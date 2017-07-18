@@ -41,5 +41,9 @@ If you want to use aws, the ami of the image used is ami-c77752d1 with name "new
 ## Results
 
 With 63 processes with communication enabled it obtains average reward per episode of 320 (3.5 times that of baseline with disabled communication) for BreakoutDeterministic-v4 after 108 hours of training on aws m4.16xlarge cpu instance.
+
+Comm Enabled
 ![Commmunication_enabled BreakoutDeterministic-v4](images/comm_enabled.png)
+
+Comm Disabled (Baseline)
 ![Commmunication_disabled BreakoutDeterministic-v4](images/comm_disabled_baseline.png)
