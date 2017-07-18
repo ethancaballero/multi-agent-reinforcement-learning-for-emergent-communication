@@ -1,4 +1,4 @@
-# Split Screen Communication
+# Split Screen Communication Learning
 
 This is a PyTorch demonstration of split-screen communication learning.
 
