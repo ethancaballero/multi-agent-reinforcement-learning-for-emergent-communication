@@ -2,6 +2,8 @@
 
 This is a PyTorch demonstration of split-screen communication learning.
 
+View the model in action at: https://www.youtube.com/watch?v=f0Wex0IeFNM
+
 ## Usage
 
 To view trained communication model running:
