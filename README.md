@@ -2,7 +2,20 @@
 
 This is a PyTorch demonstration of split-screen communication learning.
 
-View the model in action at: https://www.youtube.com/watch?v=f0Wex0IeFNM
+Read the description below & then view the model in action at: https://www.youtube.com/watch?v=f0Wex0IeFNM&t=43s
+
+# Description of setup
+In this Screen Splitting approach, one splits up the observation (and possibly the action controls) so that agent(s) performing action(s) do not have complete access to the entire observation. One then sets up a communication channel between agents (each with different portions of the observation) so that agent(s) with part of the observation and agent(s) with the access to the main action control (e.g. moving the paddle in Breakout) are forced to learn to communicate with discrete words in order to successfully complete a task.
+
+To verify this approach, a model/environment was implemented in which agents successfully learned to communicate to obtain an average reward of 320 per episode (and cleared the whole screen (obtained reward per episode higher than 432) at least once) in a partially observable version of BreakoutDeterministic-v4 in which the screen is split with a horizontal line such that one agent with no non-linguistic action control sees the top 93% of the screen and another agent with access to the paddle controls sees the bottom 4% of the screen (just the paddle and below).
+
+This partially observable environment is unsolvable unless the agents learn a communication policy. To check this, I ran a baseline with a blocked communication channel that only obtained an average reward of 90 (2/7 that of the same model with communication enabled with the same amount of training).
+ 
+
+# Description of Model I created that solves this setup's task
+The model is similar to COMA from Foerster et al. 2017 [arXiv:1705.08926] and MADDPG from [arXiv:1706.02275] in that it uses an omniscient critic (that sees combination of all agent's observations & actions) during training to stabilize the training of agents whose policies only have access to partial observations of the environment at test time.
+
+Each agent is an A3C with GAE using an architecture consisting (4 layer conv for enbedding percepts & linear layer for embedding communicated messages) -> lstm -> separate linear heads for generating communications & actions. The omniscient critic is 4 layer conv -> lstm -> linear layer to estimate value of actions. The communication channel between agents is differentiable like in RIAL from [arxiv:1605.06676], but uses a categorical & more accurate estimator from "Lost Relatives of the Gumbel Trick" [arxiv:1706.04161] that averages N gumbel distributions and subtracts out Euler's constant. The linear layers of the communication message embedding & generation (decoding) layers are tied due to accuracy & speed gains as described in [arxiv:1611.01462].
 
 ## Usage
 
