@@ -65,3 +65,4 @@ Comm Disabled (Baseline)
 
 ###### Acknowledgements
 - [@ikostrikov](https://github.com/ikostrikov)'s [pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c)
+- [@pfnet](https://github.com/pfnet)'s [ChainerRL](https://github.com/pfnet/chainerrl)
