@@ -62,3 +62,6 @@ Comm Enabled
 
 Comm Disabled (Baseline)
 ![Commmunication_disabled BreakoutDeterministic-v4](images/comm_disabled_baseline.png)
+
+####### Acknowledgements
+- [@ikostrikov](https://github.com/ikostrikov)'s [pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c)
